@@ -1,9 +1,9 @@
 body {
 	background-color: #faf6de;
-    background-image: url('assets/notebook.png'); /* Replace 'path/to/your/image.jpg' with the actual path to your image */
-    background-size: cover; /* Cover the entire background */
-    /* background-position: center;  */
-    background-repeat: no-repeat; /* Do not repeat the background image */
+	background-image: url("assets/notebook.png"); /* Replace 'path/to/your/image.jpg' with the actual path to your image */
+	background-size: cover; /* Cover the entire background */
+	background-position: center top;
+	background-repeat: no-repeat; /* Do not repeat the background image */
 }
 
 .white-line {
@@ -13,4 +13,84 @@ body {
 	background-color: white;
 	/* top: 50%; */
 	left: 50%;
+}
+
+#login:hover,
+#signup:hover {
+	animation: Shake 0.5s linear infinite;
+}
+
+@keyframes Shake {
+	0% {
+		transform: rotate(5deg);
+	}
+
+	25% {
+		transform: rotate(-6deg);
+	}
+
+	50% {
+		transform: rotate(5deg);
+	}
+
+	75% {
+		transform: rotate(-6deg);
+	}
+
+	100% {
+		transform: rotate(5deg);
+	}
+}
+
+.rise-shake {
+	animation: jump-shaking 3s infinite;
+}
+
+.skew-shake-x {
+	animation: skew-x-shake 3s infinite;
+}
+
+@keyframes jump-shaking {
+	0% {
+		transform: translateX(0);
+	}
+	25% {
+		transform: translateY(-1px);
+	}
+	35% {
+		transform: translateY(-1px) rotate(5deg);
+	}
+	55% {
+		transform: translateY(-1px) rotate(-5deg);
+	}
+	65% {
+		transform: translateY(-1px) rotate(5deg);
+	}
+	75% {
+		transform: translateY(-1px) rotate(-5deg);
+	}
+	100% {
+		transform: translateY(0) rotate(0);
+	}
+}
+
+@keyframes skew-x-shake {
+	0% {
+		transform: skewX(-15deg);
+	}
+	5% {
+		transform: skewX(15deg);
+	}
+	10% {
+		transform: skewX(-15deg);
+	}
+	15% {
+		transform: skewX(15deg);
+	}
+	20% {
+		transform: skewX(0deg);
+	}
+	100% {
+		transform: skewX(0deg);
+	}
 }

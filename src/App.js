@@ -17,6 +17,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route index element={<AboutPage/>}/>
+          <Route path="/home" element={<SampleComponent/>}/>
+          <Route path="/pantry" element={<ImageUploader/>}/>
         </Routes>
       </BrowserRouter>
     </div>

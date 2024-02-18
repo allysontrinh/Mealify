@@ -6,7 +6,8 @@ import {
   Button,
   IconButton,
 } from "@material-tailwind/react";
- 
+
+
 export function NavbarComp() {
   const [openNav, setOpenNav] = React.useState(false);
  
@@ -38,7 +39,7 @@ export function NavbarComp() {
           />
         </svg>
  
-        <a href="#" className="flex items-center text-xl">
+        <a href="/home" className="flex items-center text-xl">
           Pages
         </a>
       </Typography>
@@ -116,12 +117,13 @@ export function NavbarComp() {
   );
  
   return (
-    <Navbar className="mx-auto max-w-screen-xl px-4 py-2 lg:px-8 lg:py-6 bg-[#b4996d]">
+    <Navbar className="mx-auto max-w-screen-xl px-4 py-2 lg:px-8 lg:py-5 bg-[#b4996d]">
       <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
         <Typography
           as="a"
-          href="#"
-          className="mr-4 cursor-pointer py-1.5 text-2xl text-white"
+          href="/"
+          className="mr-4 cursor-pointer py-1.5 text-4xl text-white"
+          style={{ fontFamily: "Protest Riot" }}
         >
           Mealify
         </Typography>

@@ -9,18 +9,18 @@ import signup from "../assets/signup.png"
 export default function AboutPage() {
     return <div className="flex justify-around flex-wrap place-items-center gap-4">
         <div className="w-1/2 pt-4 max-w-96">
-            <img src={text1} alt="text1" />
-            <img src={text2} alt="text2" />
+            <img className="" src={text1} alt="text1" />
+            <img className="pt-4 skew-shake-x" src={text2} alt="text2" />
         </div>
         <div className="p-8">
             <div className="flex flex-col max-w-80">
-                <img className="w-32" src={bear} alt="bear" />
+                <img className="w-32 rise-shake" src={bear} alt="bear" />
                 <a className="place-self-center" href="https://example.com">
-                    <img className="w-80" src={login} alt="login" />
+                    <img id="login" className="w-80 pt-2" src={login} alt="login" />
                 </a>
-                <img className="w-96 place-self-center" src={text3} alt="text3" />
+                <img className="mt-6 w-96 place-self-center" src={text3} alt="text3" />
                 <a className="place-self-center" href="https://example.com">
-                    <img className="w-80" src={signup} alt="signup" />
+                    <img id="signup" className="w-80" src={signup} alt="signup" />
                 </a>
             </div>
         </div>
