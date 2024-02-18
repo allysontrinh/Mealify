@@ -8,6 +8,7 @@ import getrecipe from '../assets/getrecipe.png'
 export default function Modal({ items }) {
     const [showModal, setShowModal] = React.useState(false);
     const [recipe, setRecipe] = useState('');
+    const [prices, setPrices] = useState('');
 
     const getRecipe = () => {
         const url = "http://localhost:4004/getRecipe";
@@ -30,7 +31,8 @@ export default function Modal({ items }) {
             .then(data => {
                 console.log("got the recipe!");
                 console.log(data);
-                setRecipe(data);
+                setRecipe(data.recipe);
+                setPrices(data.prices)
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -75,6 +77,17 @@ export default function Modal({ items }) {
                                         Just a second... Recipe is on the way ^^
                                     </p>: <div >
                                     <Markdown>{recipe}</Markdown>
+                                    <h3 className="text-xl font-semibold mt-4">Prices:</h3>
+                                {Object.keys(prices).map(foodItem => (
+                                    <div key={foodItem}>
+                                        <p className="font-semibold">{foodItem}:</p>
+                                        <ul>
+                                            {prices[foodItem].map(([storeName, price]) => (
+                                                <li key={storeName}>{`${storeName}: $${price}`}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                ))}
                                     </div>}
                                 </div>
                                 {/*footer*/}
