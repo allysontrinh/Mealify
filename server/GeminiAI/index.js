@@ -60,28 +60,17 @@ async function getRecipe(ingredientList){
     return recipe;
 }
 
-app.post('/analyze', async (req, res) => {
+app.post('/getRecipe', async (req, res) => {
 
     try {
         // const imagePath = 'apple.jpeg';
         // const imageData = await fs.readFile(imagePath);
         // const imageBase64 = imageData.toString('base64');
-        const imageBase64 = req.body.image;
-
-        const parts = [
-        {text: "Tell me what items are in the form of an array"},
-        {
-            inlineData: {
-                mimeType: "image/jpeg",
-                data: imageBase64
-            }
-        },
-    ];
-    const result = await model.generateContent({contents: [{role: "user", parts}]});
-    const response = await result.response;
-    const text = response.text();
-    console.log(text);
-    console.log("HELLO");
+        const items = req.body.items;
+        const response = await getRecipe(items);
+        console.log(response);
+        console.log("HELLO");
+        res.json(response);
 
         // const list = getIngredients(imageBase64);
         // console.log(list);

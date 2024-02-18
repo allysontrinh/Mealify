@@ -111,3 +111,8 @@ body {
     padding: 20px;
 	width: 60%;
   }
+
+.modal {
+	bottom: 20px; 
+  	right: 20px;
+}
