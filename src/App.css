@@ -94,3 +94,20 @@ body {
 		transform: skewX(0deg);
 	}
 }
+
+#pantry {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+}
+
+.centered-div {
+    position: absolute;
+    top: 15rem;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* background-color: white; */
+    padding: 20px;
+	width: 60%;
+  }

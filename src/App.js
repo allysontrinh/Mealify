@@ -9,18 +9,20 @@ function App() {
   return (
     <div>
       <NavbarComp/>
+      <div>
+        <BrowserRouter>
+          <Routes>
+            <Route index element={<AboutPage/>}/>
+            <Route path="/home" element={<SampleComponent/>}/>
+            <Route path="/pantry" element={<ImageUploader/>}/>
+          </Routes>
+        </BrowserRouter>
+      </div>
       {/* <div>
         <AboutPage/>
         <SampleComponent/>
         <ImageUploader/>
       </div> */}
-      <BrowserRouter>
-        <Routes>
-          <Route index element={<AboutPage/>}/>
-          <Route path="/home" element={<SampleComponent/>}/>
-          <Route path="/pantry" element={<ImageUploader/>}/>
-        </Routes>
-      </BrowserRouter>
     </div>
   );
 }

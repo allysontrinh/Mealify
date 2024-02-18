@@ -100,7 +100,7 @@ app.post('/getIngredients', async (req, res) => {
         const imageBase64 = req.body.image;
 
         const parts = [
-        {text: "Give me items name stored in this format {\"items\":[food_item_1,food_item_2,etc.]}. The names of the items has to be a string. If there is one item, give me this object{\"items\":[food_item_name]}}"},
+        {text: "Give me items name stored in this format {\"items\":[food_item_1,food_item_2,etc.]}. The names of the items has to be a string. If there is one item, give me this object{\"items\":[food_item_name]}}. The response should only be the object."},
         {
             inlineData: {
                 mimeType: "image/jpeg",

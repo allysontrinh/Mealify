@@ -63,20 +63,27 @@ const ImageUploader = () => {
   };
 
   return (
-    <div>
-      <input type="file" accept="image/*" onChange={handleImageChange} />
-      {imageSrc && <img src={imageSrc} alt="Uploaded" style={{ maxWidth: '300px' }} />}
-      {imageBase64 && (
-        <div>
-          <div style={{ display: 'flex' }}>
-            {ingredientList.map((ingredient, index) => (
-              <div key={index} style={{ border: '1px solid #ccc', padding: '5px', margin: '5px' }}>
-                {ingredient}
-              </div>
-            ))}
+    <div className='relative'>
+      <img id="pantry" className='absolute' src={pantry} alt="pantry" />
+      <div className='absolute mt-9 ml-8 bg-fuchsia-100 p-2 w-[250px] rounded-md'>
+        <input className='' type="file" accept="image/*" onChange={handleImageChange} />
+      </div>
+      {/* <div className='absolute'>
+        {imageSrc && <img src={imageSrc} alt="Uploaded" style={{ maxWidth: '300px' }} />}
+      </div> */}
+      <div className='absolute centered-div'>
+        {imageBase64 && (
+          <div className=''>
+            <div className='flex flex-wrap gap-8 '>
+              {ingredientList.map((ingredient, index) => (
+                <div key={index} style={{ border: '1px solid #ccc', padding: '1rem', margin: '5px' }}>
+                  {ingredient}
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
