@@ -26,72 +26,73 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-async function generateContent(image){
-    try {
-        // const imagePath = image;
-        // const imageData = await fs.readFile(imagePath);
-        // const imageBase64 = imageData.toString('base64');
+// async function generateContent(image){
+//     try {
+//         // const imagePath = image;
+//         // const imageData = await fs.readFile(imagePath);
+//         // const imageBase64 = imageData.toString('base64');
 
-        const ingredientList = await getIngredients(imageBase64);
-        const recipe = await getRecipe(ingredientList);
-        console.log(recipe);
-    }
-    catch(error){
-        console.error("Error generating content:", error);
-    }
-}
+//         const ingredientList = await getIngredients(image);
+//         const recipe = await getRecipe(ingredientList);
+//         console.log(recipe);
+//     }
+//     catch(error){
+//         console.error("Error generating content:", error);
+//     }
+// }
 
 //function with array of strings ingredients
 //assuming that image is already converted to base64
-async function getIngredients(image){
-    const parts = [
-        {text: "Tell me what items separated with only commas"},
-        {
-            inlineData: {
-                mimeType: "image/jpeg",
-                data: image
-            }
-        },
-    ];
-    const result = await model.generateContent({contents: [{role: "user", parts}]});
-    const response = await result.response;
-    const text = response.text();
+// async function getIngredients(image){
+//     const parts = [
+//         {text: "Tell me what items separated with only commas"},
+//         {
+//             inlineData: {
+//                 mimeType: "image/jpeg",
+//                 data: image
+//             }
+//         },
+//     ];
+//     const result = await model.generateContent({contents: [{role: "user", parts}]});
+//     const response = await result.response;
+//     const text = response.text();
 
-    //Returns the response into an array of strings
-    const list = text.toLowerCase().split(",");
-    return list;
-}
+//     //Returns the response into an array of strings
+//     const list = text.toLowerCase().split(",");
+//     return list;
+// }
 
 //takes in array of strings of ingredients and generates recipes 
-async function getRecipe(ingredientList){
-    let prompt = "Give me 1 recipe that uses ";
-    ingredientList = ingredientList.toString();
-    prompt = prompt + ingredientList;
+// async function getRecipe(ingredientList){
+//     let prompt = "Give me 1 recipe that uses ";
+//     ingredientList = ingredientList.toString();
+//     prompt = prompt + ingredientList;
 
-    const result = await text.generateContent(prompt);
-    const response = await result.response;
-    const recipe = response.text();
-    return recipe;
-}
+//     const result = await text.generateContent(prompt);
+//     const response = await result.response;
+//     const recipe = response.text();
+//     return recipe;
+// }
 
-app.get("/foodRecipe", async (req, res) => {
-    // based on the ingredients in the stuff in the pantry
-    const snapshot = await Kitchen.get();
-    const names = snapshot.docs.map(doc => doc.id);
-    const recipe = getRecipe(names)
-    res.send({ recipe: recipe });
-});
+// app.get("/foodRecipe", async (req, res) => {
+//     // based on the ingredients in the stuff in the pantry
+//     const snapshot = await Kitchen.get();
+//     const names = snapshot.docs.map(doc => doc.id);
+//     const recipe = getRecipe(names)
+//     res.send({ recipe: recipe });
+// });
 
 
-app.post("/addFood", async (req, res) => {
-    const image = req.body.image
-    foodNames = generateContent(image)
-    // const { foodNames } = req.body;
-    for (const foodName of foodNames) {
-        await Kitchen.doc(foodName.toLowerCase()).set({ exists: true });
-      }
-    res.send({ foodNames: foodNames });
-});
+// app.post("/addFood", async (req, res) => {
+//     const image = req.body.image
+//     const foodNames = generateContent(image)
+//     // const { foodNames } = req.body;
+//     for (const foodName of foodNames) {
+//         await Kitchen.doc(foodName.toLowerCase()).set({ exists: true });
+//       }
+//     res.send({ foodNames: foodNames });
+// });
+
 
 app.delete("/deleteFood", async (req, res) => {
     const foodName = req.body.foodName.toLowerCase();
