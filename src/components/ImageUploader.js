@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import fetch from 'node-fetch';
 
 function getImageData(imageBase64) {
-  const url = "http://localhost:4000/analyze";
+  const url = "http://localhost:4004/getIngredients";
   const dataToSend = {
     image: imageBase64
   };
