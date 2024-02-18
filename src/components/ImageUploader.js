@@ -73,6 +73,14 @@ const ImageUploader = () => {
     getImageData(base64String);
   };
 
+  const removeIngredient = (ingredient) => {
+    console.log("remove")
+    setIngredientList(prevList => {
+      const updatedList = prevList.filter(item => item.toLowerCase() !== ingredient.toLowerCase());
+      return updatedList;
+    });
+  };
+
   return (
     <div>
       <div className='relative'>
@@ -90,7 +98,7 @@ const ImageUploader = () => {
               <div className='flex flex-wrap gap-2 '>
                 {ingredientList.map((ingredient, index) => (
                   <div key={index} className='flex flex-end w-[90px] flex-wrap justify-center' style={{ margin: '5px' }}>
-                    {(items_arr.includes(ingredient.toLowerCase())) ? <img className='w-16' src={require(`../assets/items/${ingredient.toLowerCase()}.png`)} alt={ingredient} /> : <img className='w-16' src={bag} alt='none' />}
+                    {(items_arr.includes(ingredient.toLowerCase())) ? <img className='w-16' src={require(`../assets/items/${ingredient.toLowerCase()}.png`)} alt={ingredient} onClick={() => removeIngredient(ingredient.toLowerCase())} /> : <img onClick={() => removeIngredient(ingredient.toLowerCase())} className='w-16' src={bag} alt='none' />}
                     <div className='place-self-end'>{ingredient.toLowerCase()}</div>
                   </div>
                 ))}
