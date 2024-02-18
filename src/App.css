@@ -1,5 +1,5 @@
 body {
-	background-color: #faf6de;
+	background-color: #f4efd0;
 	background-image: url("assets/notebook.png"); /* Replace 'path/to/your/image.jpg' with the actual path to your image */
 	background-size: cover; /* Cover the entire background */
 	background-position: center top;
@@ -104,8 +104,8 @@ body {
 
 .centered-div {
     position: absolute;
-    top: 15rem;
-    left: 50%;
+    top: 300px;
+    left: 53%;
     transform: translate(-50%, -50%);
     /* background-color: white; */
     padding: 20px;
@@ -116,3 +116,27 @@ body {
 	bottom: 20px; 
   	right: 20px;
 }
+
+.loading-container {
+	position: absolute;
+	bottom: 50vh;
+	right: 50vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  }
+  
+  .loading-spinner {
+	border: 5px solid #f3f3f3; /* Light grey */
+	border-top: 5px solid #ce87db; /* Blue */
+	border-radius: 50%;
+	width: 100px;
+	height: 100px;
+	animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+  }
+  

@@ -6,10 +6,11 @@ import bear from "../assets/bear.png"
 import login from "../assets/login.png"
 import signup from "../assets/signup.png"
 
+
 export default function AboutPage() {
     return <div className="flex justify-around flex-wrap place-items-center gap-4">
         <div className="w-1/2 pt-4 max-w-96">
-            <img className="" src={text1} alt="text1" />
+            <img className="" src={require('../assets/text1.png')} alt="text1" />
             <img className="pt-4 skew-shake-x" src={text2} alt="text2" />
         </div>
         <div className="p-8">
