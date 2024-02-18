@@ -1,6 +1,8 @@
 import {GoogleGenerativeAI} from "@google/generative-ai";
+import {getJson} from 'serpapi';
 import express from 'express';
 import cors from 'cors';
+
 
 const GOOGLE_API_KEY = "AIzaSyAReNUhPSFUsB602ryP5wYs94bbjnf8fME";
 const genAI = new GoogleGenerativeAI(GOOGLE_API_KEY);
@@ -12,6 +14,39 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+async function getPricesForFoodItems(foodItems) {
+    console.log("foodItems: ", foodItems)
+    let pricesDict = {};
+    const apiCalls = foodItems.map(foodItem => {
+        return new Promise((resolve, reject) => {
+            getJson({
+                api_key: "037b30a225ba8d1f4d7b8da1a6fb42afcbf90b5cc874f875d3568ebc91f58129",
+                engine: "google_shopping",
+                q: foodItem,
+                google_domain: "google.com",
+                type: "search"
+            }, (results) => {
+                results.shopping_results.forEach(result => {
+                    if (result.position <= 3) {
+                        if (!(foodItem in pricesDict)) {
+                            pricesDict[foodItem] = [[result.source, result.price]];
+                        } else {
+                            pricesDict[foodItem].push([result.source, result.price]);
+                        }
+
+                        console.log(`${foodItem} | ${result.source} | ${result.price}`);
+                    }
+                });
+                resolve();
+            });
+        });
+    });
+
+    await Promise.all(apiCalls);
+    console.log("pricesDict: ". pricesDict);
+    return pricesDict;
+}
+
 async function generateContent(image){
     try {
         // const imagePath = image;
@@ -19,7 +54,10 @@ async function generateContent(image){
         // const imageBase64 = imageData.toString('base64');
 
         const ingredientList = await getIngredients(image);
-        const recipe = await getRecipe(ingredientList);
+        const recipe = await getRecipe(filter, ingredientList);
+        //Have to put in user's chosen filter
+        const filter = "";
+        const missingIngredients = await getMissingIngredients(ingredientList, recipe);
         console.log(recipe);
     }
     catch(error){
@@ -50,14 +88,46 @@ async function getIngredients(image){
 
 // takes in array of strings of ingredients and generates recipes 
 async function getRecipe(ingredientList){
-    let prompt = "Give me 1 recipe that uses ";
-    ingredientList = ingredientList.toString();
-    prompt = prompt + ingredientList;
-
-    const result = await text.generateContent(prompt);
-    const response = await result.response;
+    let prompt = `Give me one recipe that uses ${ingredientList.toString()}`;
+    // if (filter === ""){
+    //     prompt = `Give me one recipe that uses ${ingredientList.toString()}`;
+    // }
+    // else {
+    //     prompt = `Give me one ${filter.toString()} recipe that uses ${ingredientList.toString()}`;
+    // }
+    
+    let result = await text.generateContent(prompt);
+    let response = await result.response;
     const recipe = response.text();
+
     return recipe;
+}
+
+
+
+async function getMissingIngredients(ingredients, recipe){
+    let prompt = "Given the recipe: "+ recipe + ". Tell me what items are in the recipe separated with only commas"
+    let result = await text.generateContent(prompt);
+    let response = await result.response;
+    let list = response.text().toLowerCase().split(",");
+    console.log("We need" + list + "\n");
+    let missingList = [];
+
+    list.forEach(food => {
+        if (!ingredients.includes(food)){
+            missingList.push(food);
+        }
+    });
+
+    console.log("missing food: " + missingList);
+    
+    // prompt = `List 1 contains ${list} and list 2 ${ingredients.toString()}. What in list 1 is missing from list 2?`
+    // result = await text.generateContent(prompt);
+    // response = await result.response.candidates[0].content;
+    // list = response;
+    // console.log(list);
+
+    return [missingList[0]];
 }
 
 app.post('/getRecipe', async (req, res) => {
@@ -66,11 +136,13 @@ app.post('/getRecipe', async (req, res) => {
         // const imagePath = 'apple.jpeg';
         // const imageData = await fs.readFile(imagePath);
         // const imageBase64 = imageData.toString('base64');
-        const items = req.body.items;
-        const response = await getRecipe(items);
-        console.log(response);
+        const ingredients = req.body.items;
+        const recipe = await getRecipe(ingredients);
         console.log("HELLO");
-        res.json(response);
+        const missingIngredients = await getMissingIngredients(ingredients, recipe)
+        const prices = await getPricesForFoodItems(missingIngredients)
+        console.log("prices: ", prices)
+        res.json({recipe, prices});
 
         // const list = getIngredients(imageBase64);
         // console.log(list);
