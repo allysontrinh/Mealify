@@ -19,6 +19,7 @@ const db = admin.firestore()
 
 let User = db.collection("Users")
 let Kitchen = db.collection("Kitchen")
+let recipe = db.collection("recipe")
 
 const express = require('express');
 const cors = require('cors');
@@ -93,6 +94,13 @@ app.use(cors());
 //     res.send({ foodNames: foodNames });
 // });
 
+app.post("/addRecipe", async (req, res) => {
+  console.log(req.body)
+  // const data = req.body.recipe;
+  const data = "some recipe"
+  await recipe.add(data);
+  res.send(data);
+});
 
 app.delete("/deleteFood", async (req, res) => {
     const foodName = req.body.foodName.toLowerCase();
