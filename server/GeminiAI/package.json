@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "license": "AGPL-version-3.0",
   "private": false,
   "engines": {
@@ -23,12 +24,12 @@
   },
   "contributors": [],
   "scripts": {
-    "start": "nodemon index.js",
-    "dev": "nodemon index.js",
+    "dev": "",
     "test": ""
   },
   "dependencies": {
     "@google/generative-ai": "^0.2.1",
+    "cors": "^2.8.5",
     "express": "^4.18.2",
     "node-fetch": "^3.3.2"
   }
