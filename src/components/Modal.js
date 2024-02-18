@@ -35,7 +35,7 @@ export default function Modal({ items }) {
             .catch(error => {
                 console.error('Error:', error);
             });
-        setShowModal(true)
+        setShowModal(true);
     }
     return (
         <div className="absolute modal">

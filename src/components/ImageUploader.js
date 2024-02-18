@@ -6,7 +6,7 @@ import bag from '../assets/items/bag.png';
 
 const items_arr = ['giner','rice','bread','apple','tomatoes','watermelon','milk','pasta','wine','juice','avocado', 'banana', 'beef', 'egg', 'eggs', 'garlic', 'lettuce', 'meat', 'pork', 'radish', 'onion', 'carrot', 'mushroom', 'scallion', 'soy sauce', 'cilantro', 'tofu']
 
-const ImageUploader = () => {
+const ImageUploader = ({addRecipe}) => {
   const [imageSrc, setImageSrc] = useState('');
   const [imageBase64, setImageBase64] = useState('');
   const [ingredientList, setIngredientList] = useState([]);
@@ -107,7 +107,7 @@ const ImageUploader = () => {
           )}
         </div>
       </div>
-      <Modal items={ingredientList} />
+      <Modal addRecipe={addRecipe} items={ingredientList} />
       <div className="loading-container" style={{ display: loading ? 'block' : 'none' }}>
         <div className="loading-spinner"></div>
       </div>

@@ -2,10 +2,13 @@ import './App.css';
 import AboutPage from './components/AboutPage';
 import ImageUploader from './components/ImageUploader';
 import { NavbarComp } from './components/NavbarComp';
-import SampleComponent from './components/SampleComponent';
+import RecipeCollection from './components/RecipeCollection';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
+import React, { useState } from 'react';
+import Signup from './components/Signup';
 
 function App() {
+
   return (
     <div>
       <NavbarComp/>
@@ -13,8 +16,9 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route index element={<AboutPage/>}/>
-            <Route path="/home" element={<SampleComponent/>}/>
+            <Route path="/home" element={<RecipeCollection /> }/>
             <Route path="/pantry" element={<ImageUploader/>}/>
+            <Route path="/signup" element={<Signup/>}/>
           </Routes>
         </BrowserRouter>
       </div>
