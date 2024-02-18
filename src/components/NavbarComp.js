@@ -63,7 +63,7 @@ export function NavbarComp() {
             fill="#90A4AE"
           />
         </svg>
-        <a href="#" className="flex items-center text-xl">
+        <a href="/pantry" className="flex items-center text-xl">
           Account
         </a>
       </Typography>
