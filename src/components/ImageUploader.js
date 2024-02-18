@@ -1,37 +1,11 @@
 import React, { useState } from 'react';
 import fetch from 'node-fetch';
-
-function getImageData(imageBase64) {
-  const url = "http://localhost:4004/getIngredients";
-  const dataToSend = {
-    image: imageBase64
-  };
-
-  fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(dataToSend)
-  })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log("got the response!");
-      console.log(JSON.parse(data));
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-}
+import pantry from "../assets/pantry.jpeg"
 
 const ImageUploader = () => {
   const [imageSrc, setImageSrc] = useState('');
   const [imageBase64, setImageBase64] = useState('');
+  const [ingredientList, setIngredientList] = useState([]);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -46,6 +20,39 @@ const ImageUploader = () => {
       reader.readAsDataURL(file);
     }
   };
+  function getImageData(imageBase64) {
+    const url = "http://localhost:4004/getIngredients";
+    const dataToSend = {
+      image: imageBase64
+    };
+
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(dataToSend)
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log("got the response!");
+        console.log(JSON.parse(data));
+        const parsedData = JSON.parse(data);
+        console.log(typeof (parsedData));
+        if (typeof (parsedData) == "object" && parsedData.items) {
+          console.log("checked!");
+          setIngredientList(parsedData.items);
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }
 
   const convertImageToBase64 = (imageSrc) => {
     // Convert image to base64
@@ -61,9 +68,13 @@ const ImageUploader = () => {
       {imageSrc && <img src={imageSrc} alt="Uploaded" style={{ maxWidth: '300px' }} />}
       {imageBase64 && (
         <div>
-          <h2>Base64 Encoded Image</h2>
-          {console.log(imageBase64)}
-          <textarea rows="10" cols="50" value={imageBase64} readOnly />
+          <div style={{ display: 'flex' }}>
+            {ingredientList.map((ingredient, index) => (
+              <div key={index} style={{ border: '1px solid #ccc', padding: '5px', margin: '5px' }}>
+                {ingredient}
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </div>
@@ -71,3 +82,4 @@ const ImageUploader = () => {
 };
 
 export default ImageUploader;
+
