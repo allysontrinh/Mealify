@@ -3,7 +3,7 @@
 Members: Vi Doan, Allyson Trinh, Sarah Jang, Ashna Jain, Sagi Sonni
 
 # Project Description: 
-Mealify is an eniterly handrawn website that helps users find new recipe ideas based off of what they already have in their pantry. Users first add items into their virtual pantry using groundgreaking new generative ai based technology image recognition - from a just a simple picture webapp will do identify the food items and then automatically add visuals to our pantry. Then users search for reciepes, based on these foods. For and for any ingredients in the receipe they dont have, our website will return the closest near by stores that sell that item.
+Mealify is an eniterly handrawn website that helps users find new recipe ideas based off of what they already have in their pantry. Users first add items into their virtual pantry using groundgreaking new generative ai based technology image recognition - from a just a simple picture webapp will do identify the food items and then automatically add visuals to our pantry. Then users search for reciepes, based on these foods. For any ingredients,in the receipe, the user does not have, our website will return the closest near by stores that sell that item.
 
 All the visuals are ENITRELY hand drawn, and have been made with a lot of thought and care. 
 
