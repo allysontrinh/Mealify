@@ -8,14 +8,15 @@ All the visuals are ENITRELY hand drawn, and have been made with a lot of though
 
 # Backend: 
 The Backend is written in Nodejs + Express with database connection to Google Firebase + Firestore.
-There backend has multiple CRUD operation endpoints to update the database. 
+The backend has multiple CRUD operation endpoints to read & update the database. 
 
 The backend also stores the logic for the generative ai based photo recognition and recipe generation - we used Google Gemini in order to accomplish this. 
 
 The backend also has the code for providing a list of prices and store names for the food that the user does not have. 
 
 # Frontend: 
-The frontend is written in React. Frontend uses Firebase authentication for user login. All the frontend visuals were handrawn by our teammate Allyson Trinh.
+The frontend is written in React. 
+Frontend uses Firebase authentication for user login. All the frontend visuals were handrawn by our teammate Allyson Trinh.
 
 # API Endpoints:
 - /foodRecipe: returns a recipe based on the foods in the users pantry
@@ -24,5 +25,5 @@ The frontend is written in React. Frontend uses Firebase authentication for user
 - /foodAvaliable: returns a list of all the foods that are stored in the pantry
 
 # To run the Mealify webapp: 
-- cd into Server folder and run "node index.js" -> this will run the backend
-- in a separate terminal run "npm run start" -> this wil run the frontend 
+- Backend: cd into Server folder and run "node index.js"
+- Frontend: in a separate terminal run "npm run start"
