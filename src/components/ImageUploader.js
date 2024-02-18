@@ -4,7 +4,7 @@ import pantry from "../assets/pantry.jpeg";
 import Modal from './Modal';
 import bag from '../assets/items/bag.png';
 
-const items_arr = ['rice','bread','apple','tomatoes','watermelon','milk','pasta','wine','juice','avocado', 'banana', 'beef', 'egg', 'eggs', 'garlic', 'lettuce', 'meat', 'pork', 'radish', 'onion', 'carrot', 'mushroom', 'scallion', 'soy sauce', 'cilantro', 'tofu']
+const items_arr = ['giner','rice','bread','apple','tomatoes','watermelon','milk','pasta','wine','juice','avocado', 'banana', 'beef', 'egg', 'eggs', 'garlic', 'lettuce', 'meat', 'pork', 'radish', 'onion', 'carrot', 'mushroom', 'scallion', 'soy sauce', 'cilantro', 'tofu']
 
 const ImageUploader = () => {
   const [imageSrc, setImageSrc] = useState('');

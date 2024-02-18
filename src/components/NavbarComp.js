@@ -53,7 +53,7 @@ export function NavbarComp() {
       >
 
         <img className="w-6" src={pantryicon} alt=""/>
-        <a href="/pantry" className="flex items-center text-xl">
+        <a href="/pantry" className="flex items-center text-xl pr-8">
           Pantry
         </a>
       </Typography>

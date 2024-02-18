@@ -72,7 +72,7 @@ export default function Modal({ items }) {
                                 {/*body*/}
                                 <div className="relative p-6 flex-auto">
                                     {(recipe.length == 0)?<p className="my-4 text-blueGray-500 text-lg leading-relaxed">
-                                        Just a second... Recipe is one the way ^^
+                                        Just a second... Recipe is on the way ^^
                                     </p>: <div >
                                     <Markdown>{recipe}</Markdown>
                                     </div>}
