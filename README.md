@@ -3,21 +3,15 @@
 Members: Vi Doan, Allyson Trinh, Sarah Jang, Ashna Jain, Sagi Sonni
 
 # Project Description: 
-Mealify is an eniterly handrawn website that helps users find new recipe ideas based off of what they already have in their pantry. Users first add items into their virtual pantry using groundgreaking new generative ai based technology image recognition - from a just a simple picture webapp will do identify the food items and then automatically add visuals to our pantry. Then users search for reciepes, based on these foods. For any ingredients,in the receipe, the user does not have, our website will return the closest near by stores that sell that item.
+Mealify is a meticulously hand-drawn website designed to assist users in discovering new recipe inspirations based on the ingredients they already have in their pantry. Leveraging cutting-edge generative AI technology for image recognition, users can effortlessly populate their virtual pantry by simply uploading images, with the web app intelligently identifying and adding food items. Once the pantry is stocked, users can search for recipes tailored to their available ingredients. If a recipe requires ingredients not in the user's pantry, Mealify provides suggestions for nearby stores where they can be purchased.
 
-All the visuals are ENITRELY hand drawn, and have been made with a lot of thought and care. 
+Every visual element on Mealify has been meticulously handcrafted with care and attention to detail. 
 
 # Backend: 
-The Backend is written in Nodejs + Express with database connection to Google Firebase + Firestore.
-The backend has multiple CRUD operation endpoints to read & update the database. 
-
-The backend also stores the logic for the generative ai based photo recognition and recipe generation - we used Google Gemini in order to accomplish this. 
-
-The backend also has the code for providing a list of prices and store names for the food that the user does not have. 
+The backend is developed using Node.js and Express, with a database connection to Google Firebase and Firestore. It features multiple endpoints for CRUD operations to manage the database. Additionally, the backend incorporates the logic for generative AI-based photo recognition and recipe generation, powered by Google Gemini. It also facilitates providing a curated list of prices and store names for any missing ingredients using the Google Store API.
 
 # Frontend: 
-The frontend is written in React. 
-Frontend uses Firebase authentication for user login. All the frontend visuals were handrawn by our teammate Allyson Trinh.
+The frontend is built with React and integrates Firebase authentication for user login. All visual components on the frontend have been lovingly hand-drawn by our teammate Allyson Trinh.
 
 # API Endpoints:
 - /foodRecipe: returns a recipe based on the foods in the users pantry
@@ -26,5 +20,5 @@ Frontend uses Firebase authentication for user login. All the frontend visuals w
 - /foodAvaliable: returns a list of all the foods that are stored in the pantry
 
 # To run the Mealify webapp: 
-- Backend: cd into Server folder and run "node index.js"
-- Frontend: in a separate terminal run "npm run start"
+Backend: Navigate to the Server folder and run node index.js.
+Frontend: In a separate terminal, run npm run start.
