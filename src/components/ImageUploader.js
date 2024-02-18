@@ -21,7 +21,8 @@ function getImageData(imageBase64) {
       return response.json();
     })
     .then(data => {
-      console.log(data);
+      console.log("got the response!");
+      console.log(JSON.parse(data));
     })
     .catch(error => {
       console.error('Error:', error);
