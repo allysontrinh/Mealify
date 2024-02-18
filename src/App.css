@@ -1,0 +1,16 @@
+body {
+	background-color: #faf6de;
+    background-image: url('assets/notebook.png'); /* Replace 'path/to/your/image.jpg' with the actual path to your image */
+    background-size: cover; /* Cover the entire background */
+    /* background-position: center;  */
+    background-repeat: no-repeat; /* Do not repeat the background image */
+}
+
+.white-line {
+	position: absolute;
+	width: 5px;
+	height: 100%; /* Adjust the height of the line as needed */
+	background-color: white;
+	/* top: 50%; */
+	left: 50%;
+}
