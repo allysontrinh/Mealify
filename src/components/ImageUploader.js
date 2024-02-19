@@ -102,7 +102,7 @@ const ImageUploader = ({addRecipe}) => {
                 {ingredientList.map((ingredient, index) => (
                   <div key={index} className='flex flex-end w-[90px] flex-wrap justify-center' style={{ margin: '5px' }}>
                     {(items_arr.includes(ingredient.toLowerCase().replace(/\s/g, ''))) ? <img className='w-16' src={require(`../assets/items/${ingredient.toLowerCase().replace(/\s/g, '')}.png`)} alt={ingredient} onClick={() => removeIngredient(ingredient.toLowerCase())} /> : <img onClick={() => removeIngredient(ingredient.toLowerCase().replace(/\s/g, ''))} className='w-16' src={bag} alt='none' />}
-                    <div className='place-self-end'>{ingredient.toLowerCase()}</div>
+                    <div className='place-self-end text-white'>{ingredient.toLowerCase()}</div>
                   </div>
                 ))}
               </div>

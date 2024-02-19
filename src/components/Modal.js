@@ -40,7 +40,7 @@ export default function Modal({ items }) {
     }
     return (
         <div className="absolute modal">
-            <img onClick={getRecipe} className="skew-shake-x w-52 mr-4 mb-2" src={getrecipe} alt="getrecipe"></img>
+            <img onClick={getRecipe} className="skew-shake-x w-52 mr-4 mb-2 cursor-pointer" src={getrecipe} alt="getrecipe"></img>
             {/* <button
                 className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                 type="button"
