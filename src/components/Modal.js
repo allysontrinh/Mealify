@@ -4,7 +4,6 @@ import Markdown from 'react-markdown'
 import notepad from '../assets/notepad.png'
 import getrecipe from '../assets/getrecipe.png'
 
-
 export default function Modal({ items }) {
     const [showModal, setShowModal] = React.useState(false);
     const [recipe, setRecipe] = useState('');
@@ -41,7 +40,7 @@ export default function Modal({ items }) {
     }
     return (
         <div className="absolute modal">
-            <img onClick={getRecipe} className="w-52 mr-4 mb-2" src={getrecipe} alt="getrecipe"></img>
+            <img onClick={getRecipe} className="skew-shake-x w-52 mr-4 mb-2" src={getrecipe} alt="getrecipe"></img>
             {/* <button
                 className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                 type="button"
@@ -56,9 +55,9 @@ export default function Modal({ items }) {
                     >
                         <div className="relative w-auto my-6 mx-auto max-w-3xl" style={{ maxHeight: '500px', overflowY: 'auto' }}>
                             {/*content*/}
-                            <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                            <div className="p-1 border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                                 {/*header*/}
-                                <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
+                                <div style={{ fontFamily: "Reenie Beanie" }} className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
                                     <h3 className="text-3xl font-semibold">
                                         Recipe
                                     </h3>
@@ -73,9 +72,12 @@ export default function Modal({ items }) {
                                 </div>
                                 {/*body*/}
                                 <div className="relative p-6 flex-auto">
-                                    {(recipe.length == 0)?<p className="my-4 text-blueGray-500 text-lg leading-relaxed">
-                                        Just a second... Recipe is on the way ^^
-                                    </p>: <div >
+                                    {(recipe.length == 0)?
+                                    <div>
+                                        <p className="my-4 text-blueGray-500 text-lg leading-relaxed">
+                                            Just a second... Recipe is on the way ^^
+                                        </p>
+                                    </div>: <div >
                                     <Markdown>{recipe}</Markdown>
                                     <h3 className="text-xl font-semibold mt-4">Prices:</h3>
                                 {Object.keys(prices).map(foodItem => (
@@ -95,7 +97,7 @@ export default function Modal({ items }) {
                                     <button
                                         className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                         type="button"
-                                        onClick={() => setShowModal(false)}
+                                        onClick={() => {setShowModal(false); setRecipe('')}}
                                     >
                                         Close
                                     </button>

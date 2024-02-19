@@ -3,8 +3,10 @@ import fetch from 'node-fetch';
 import pantry from "../assets/pantry.jpeg";
 import Modal from './Modal';
 import bag from '../assets/items/bag.png';
+import whisk from '../assets/whisk.png'
+import envelop from '../assets/envelop.png'
 
-const items_arr = ['giner','rice','bread','apple','tomatoes','watermelon','milk','pasta','wine','juice','avocado', 'banana', 'beef', 'egg', 'eggs', 'garlic', 'lettuce', 'meat', 'pork', 'radish', 'onion', 'carrot', 'mushroom', 'scallion', 'soy sauce', 'cilantro', 'tofu']
+const items_arr = ['soysauce','ricenoodles','clove','butter','flour','soda','ginger','rice','bread','apple','tomatoes','watermelon','milk','pasta','wine','juice','avocado', 'banana', 'beef', 'egg', 'eggs', 'garlic', 'lettuce', 'meat', 'pork', 'radish', 'onion', 'carrot', 'mushroom', 'scallion', 'soy sauce', 'cilantro', 'tofu', 'cannedfood']
 
 const ImageUploader = ({addRecipe}) => {
   const [imageSrc, setImageSrc] = useState('');
@@ -50,13 +52,12 @@ const ImageUploader = ({addRecipe}) => {
         const parsedData = JSON.parse(data);
         console.log(typeof (parsedData));
         if (typeof (parsedData) == "object" && parsedData.items) {
-          console.log("checked!");
-          const mergedArray = ingredientList.concat(parsedData.items);
-
-          const resultArray = mergedArray.filter((item, index) => {
-            return mergedArray.indexOf(item) === index;
-          });
-          setIngredientList(resultArray);
+          for(const item of parsedData.items){
+            if(!ingredientList.includes(item.toLowerCase())){
+              ingredientList.push(item.toLowerCase())
+            }
+          }
+          setIngredientList(ingredientList);
           setLoading(false);
         }
       })
@@ -74,9 +75,8 @@ const ImageUploader = ({addRecipe}) => {
   };
 
   const removeIngredient = (ingredient) => {
-    console.log("remove")
     setIngredientList(prevList => {
-      const updatedList = prevList.filter(item => item.toLowerCase() !== ingredient.toLowerCase());
+      const updatedList = prevList.filter(item => item.toLowerCase().replace(/\s/g, '') !== ingredient.toLowerCase().replace(/\s/g, ''));
       return updatedList;
     });
   };
@@ -84,9 +84,12 @@ const ImageUploader = ({addRecipe}) => {
   return (
     <div>
       <div className='relative'>
-        <img id="pantry" className='absolute' src={pantry} alt="pantry" />
-        <div className='absolute mt-9 ml-8 bg-[#faf6de] p-2 w-[250px] rounded-md'>
-          <input className='' type="file" accept="image/*" onChange={handleImageChange} />
+        <div className='relative'>
+          <img id="pantry" className='absolute' src={pantry} alt="pantry" />
+          <div className='absolute mt-9 ml-8 p-2 w-[150px] rounded-md'>
+            <img className='absolute' src={envelop} alt=''/>
+            <input className='absolute mt-20 pl-6 w-[125px] border-none' type="file" accept="image/*" onChange={handleImageChange} />
+          </div>
         </div>
         {/* <div className='absolute'>
         {imageSrc && <img src={imageSrc} alt="Uploaded" style={{ maxWidth: '300px' }} />}
@@ -98,7 +101,7 @@ const ImageUploader = ({addRecipe}) => {
               <div className='flex flex-wrap gap-2 '>
                 {ingredientList.map((ingredient, index) => (
                   <div key={index} className='flex flex-end w-[90px] flex-wrap justify-center' style={{ margin: '5px' }}>
-                    {(items_arr.includes(ingredient.toLowerCase())) ? <img className='w-16' src={require(`../assets/items/${ingredient.toLowerCase()}.png`)} alt={ingredient} onClick={() => removeIngredient(ingredient.toLowerCase())} /> : <img onClick={() => removeIngredient(ingredient.toLowerCase())} className='w-16' src={bag} alt='none' />}
+                    {(items_arr.includes(ingredient.toLowerCase().replace(/\s/g, ''))) ? <img className='w-16' src={require(`../assets/items/${ingredient.toLowerCase().replace(/\s/g, '')}.png`)} alt={ingredient} onClick={() => removeIngredient(ingredient.toLowerCase())} /> : <img onClick={() => removeIngredient(ingredient.toLowerCase().replace(/\s/g, ''))} className='w-16' src={bag} alt='none' />}
                     <div className='place-self-end'>{ingredient.toLowerCase()}</div>
                   </div>
                 ))}
@@ -109,7 +112,9 @@ const ImageUploader = ({addRecipe}) => {
       </div>
       <Modal addRecipe={addRecipe} items={ingredientList} />
       <div className="loading-container" style={{ display: loading ? 'block' : 'none' }}>
-        <div className="loading-spinner"></div>
+        <div className="loading-spinner">
+          <img src={whisk} alt=''/>
+        </div>
       </div>
     </div>
 

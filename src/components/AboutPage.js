@@ -15,7 +15,7 @@ export default function AboutPage() {
         </div>
         <div className="p-8">
             <div className="flex flex-col max-w-80">
-                <img className="w-32 rise-shake" src={bear} alt="bear" />
+                <img className="w-32 rise-shake ml-[-40px]" src={bear} alt="bear" />
                 <a className="place-self-center" href="/signup">
                     <img id="login" className="w-80 pt-2" src={login} alt="login" />
                 </a>

@@ -9,7 +9,7 @@ import {
 import logo from '../assets/logo.png'
 import pantryicon from '../assets/pantryicon.png'
 import recipelogo from '../assets/recipelogo.png'
-
+import user from '../assets/user.png'
 
 export function NavbarComp() {
   const [openNav, setOpenNav] = React.useState(false);
@@ -22,7 +22,7 @@ export function NavbarComp() {
   }, []);
  
   const navList = (
-    <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+    <ul style={{ fontFamily: "DM Serif Text" }} className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <Typography
         as="li"
         variant="small"
@@ -30,7 +30,7 @@ export function NavbarComp() {
         className="flex items-center gap-x-2 p-1 font-medium"
       >
 
-        <img className="w-6" src={pantryicon} alt=""/>
+        <img className="w-7" src={pantryicon} alt=""/>
         <a href="/pantry" className="flex items-center text-xl pr-8">
           Pantry
         </a>
@@ -42,6 +42,17 @@ export function NavbarComp() {
         className="flex items-center gap-x-2 p-1 font-medium"
       >
         <img className="w-6" src={recipelogo} alt=""/>
+        <a href="/collection" className="flex items-center text-xl">
+          Collection
+        </a>
+      </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="ml-2 flex items-center gap-x-2 p-1 font-medium"
+      >
+        <img className="w-6" src={user} alt=""/>
         <a href="/home" className="flex items-center text-xl">
           Profile
         </a>

@@ -6,6 +6,7 @@ import RecipeCollection from './components/RecipeCollection';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import React, { useState } from 'react';
 import Signup from './components/Signup';
+import ItemCollection from './components/ItemCollection';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
             <Route path="/home" element={<RecipeCollection /> }/>
             <Route path="/pantry" element={<ImageUploader/>}/>
             <Route path="/signup" element={<Signup/>}/>
+            <Route path="/collection" element={<ItemCollection/>}/>
           </Routes>
         </BrowserRouter>
       </div>

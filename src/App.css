@@ -1,9 +1,14 @@
 body {
-	background-color: #f4efd0;
-	background-image: url("assets/notebook.png"); /* Replace 'path/to/your/image.jpg' with the actual path to your image */
-	background-size: cover; /* Cover the entire background */
-	background-position: center top;
-	background-repeat: no-repeat; /* Do not repeat the background image */
+	background-color: #faf6de;
+}
+
+@media only screen and (min-width: 860px) {
+	body {
+		background-image: url("assets/notebook.png"); /* Replace 'path/to/your/image.jpg' with the actual path to your image */
+		background-size: cover; /* Cover the entire background */
+		background-position: center top;
+		background-repeat: no-repeat; /* Do not repeat the background image */
+	}
 }
 
 .white-line {
@@ -103,18 +108,18 @@ body {
 }
 
 .centered-div {
-    position: absolute;
-    top: 300px;
-    left: 53%;
-    transform: translate(-50%, -50%);
-    /* background-color: white; */
-    padding: 20px;
+	position: absolute;
+	top: 300px;
+	left: 53%;
+	transform: translate(-50%, -50%);
+	/* background-color: white; */
+	padding: 20px;
 	width: 60%;
-  }
+}
 
 .modal {
-	bottom: 20px; 
-  	right: 20px;
+	bottom: 20px;
+	right: 20px;
 }
 
 .loading-container {
@@ -124,19 +129,19 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-  }
-  
-  .loading-spinner {
-	border: 5px solid #f3f3f3; /* Light grey */
-	border-top: 5px solid #ce87db; /* Blue */
-	border-radius: 50%;
+}
+
+.loading-spinner {
 	width: 100px;
 	height: 100px;
 	animation: spin 1s linear infinite;
-  }
-  
-  @keyframes spin {
-	0% { transform: rotate(0deg); }
-	100% { transform: rotate(360deg); }
-  }
-  
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
