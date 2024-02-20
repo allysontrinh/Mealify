@@ -125,7 +125,7 @@ body {
 .loading-container {
 	position: absolute;
 	bottom: 50vh;
-	right: 50vw;
+	right: 48vw;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -144,4 +144,13 @@ body {
 	100% {
 		transform: rotate(360deg);
 	}
+}
+
+.pantry-div{
+	position: absolute;
+	/* left: 50%;
+	transform: translate(-50%, -50%); */
+	margin-left: 18vw;
+	top: 180px;
+	max-width: 800px;
 }

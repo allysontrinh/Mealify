@@ -94,15 +94,15 @@ const ImageUploader = ({addRecipe}) => {
         {/* <div className='absolute'>
         {imageSrc && <img src={imageSrc} alt="Uploaded" style={{ maxWidth: '300px' }} />}
       </div> */}
-        <div className='absolute centered-div'>
+        <div className='pantry-div'>
           {imageBase64 && (
             <div className=''>
               {/* Show ITEMS HERE */}
-              <div className='flex flex-wrap gap-2 '>
+              <div className='flex flex-wrap gap-6 justify-center'>
                 {ingredientList.map((ingredient, index) => (
-                  <div key={index} className='flex w-[95px] flex-wrap justify-center flex-col' style={{ margin: '5px', justifyContent: 'flex-end' }}>
-                    {(items_arr.includes(ingredient.toLowerCase().replace(/\s/g, ''))) ? <img className='w-16 block place-self-center' src={require(`../assets/items/${ingredient.toLowerCase().replace(/\s/g, '')}.png`)} alt={ingredient} onClick={() => removeIngredient(ingredient.toLowerCase())} /> : <img onClick={() => removeIngredient(ingredient.toLowerCase().replace(/\s/g, ''))} className='w-16 block place-self-center' src={bag} alt='none' />}
-                    <p className=' text-white block place-self-center'>{ingredient.toLowerCase()}</p>
+                  <div key={index} className='flex flex-wrap justify-center flex-col' style={{ justifyContent: 'flex-end' }}>
+                    {(items_arr.includes(ingredient.toLowerCase().replace(/\s/g, ''))) ? <img className='h-[4.5rem] block place-self-center hover:animate-pulse cursor-pointer' src={require(`../assets/items/${ingredient.toLowerCase().replace(/\s/g, '')}.png`)} alt={ingredient} onClick={() => removeIngredient(ingredient.toLowerCase())} /> : <img onClick={() => removeIngredient(ingredient.toLowerCase().replace(/\s/g, ''))} className='w-16 block place-self-center cursor-pointer' src={bag} alt='none' />}
+                    <p className=' text-white block place-self-center mb-10'>{ingredient.toLowerCase()}</p>
                   </div>
                 ))}
               </div>
