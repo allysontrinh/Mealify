@@ -3,6 +3,7 @@ import fetch from 'node-fetch';
 import Markdown from 'react-markdown'
 import notepad from '../assets/notepad.png'
 import getrecipe from '../assets/getrecipe.png'
+import cooking from '../assets/cooking.png'
 
 export default function Modal({ items }) {
     const [showModal, setShowModal] = React.useState(false);
@@ -28,10 +29,9 @@ export default function Modal({ items }) {
                 return response.json();
             })
             .then(data => {
-                console.log("got the recipe!");
-                console.log(data);
-                setRecipe(data.recipe);
-                setPrices(data.prices)
+                console.log("Recipe is: ",data);
+                setRecipe(data);
+                // setPrices(data.prices);
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -72,32 +72,38 @@ export default function Modal({ items }) {
                                 </div>
                                 {/*body*/}
                                 <div className="relative p-6 flex-auto">
-                                    {(recipe.length == 0)?
-                                    <div>
-                                        <p className="my-4 text-blueGray-500 text-lg leading-relaxed">
-                                            Just a second... Recipe is on the way ^^
-                                        </p>
-                                    </div>: <div >
-                                    <Markdown>{recipe}</Markdown>
-                                    <h3 className="text-xl font-semibold mt-4">Prices:</h3>
-                                {Object.keys(prices).map(foodItem => (
-                                    <div key={foodItem}>
-                                        <p className="font-semibold">{foodItem}:</p>
-                                        <ul>
-                                            {prices[foodItem].map(([storeName, price]) => (
-                                                <li key={storeName}>{`${storeName}: $${price}`}</li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                ))}
-                                    </div>}
+                                    {(items.length === 0) ? <div>
+                                            <p className="my-4 text-blueGray-500 text-lg leading-relaxed">
+                                                Please upload ingredients first to get your recipe!
+                                            </p>
+                                        </div> : 
+                                    (recipe.length === 0) ?
+                                        <div className="flex">
+                                            <p className="my-4 text-blueGray-500 text-lg leading-relaxed mr-2">
+                                                Just a second... Recipe is on the way ^^
+                                            </p>
+                                            <img className="animate-bounce w-14" src={cooking} alt="" />
+                                        </div> : <div >
+                                            <Markdown>{recipe}</Markdown>
+                                            {/* <h3 className="text-xl font-semibold mt-4">Prices:</h3>
+                                            {Object.keys(prices).map(foodItem => (
+                                                <div key={foodItem}>
+                                                    <p className="font-semibold">{foodItem}:</p>
+                                                    <ul>
+                                                        {prices[foodItem].map(([storeName, price]) => (
+                                                            <li key={storeName}>{`${storeName}: $${price}`}</li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                            ))} */}
+                                        </div>}
                                 </div>
                                 {/*footer*/}
                                 <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
                                     <button
                                         className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                         type="button"
-                                        onClick={() => {setShowModal(false); setRecipe('')}}
+                                        onClick={() => { setShowModal(false); setRecipe('') }}
                                     >
                                         Close
                                     </button>

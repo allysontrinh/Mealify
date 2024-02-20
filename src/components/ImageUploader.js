@@ -6,7 +6,7 @@ import bag from '../assets/items/bag.png';
 import whisk from '../assets/whisk.png'
 import envelop from '../assets/envelop.png'
 
-const items_arr = ['soysauce','ricenoodles','clove','butter','flour','soda','ginger','rice','bread','apple','tomatoes','watermelon','milk','pasta','wine','juice','avocado', 'banana', 'beef', 'egg', 'eggs', 'garlic', 'lettuce', 'meat', 'pork', 'radish', 'onion', 'carrot', 'mushroom', 'scallion', 'soy sauce', 'cilantro', 'tofu', 'cannedfood']
+const items_arr = ['basil','jalapeno','soysauce','ricenoodles','clove','butter','flour','soda','ginger','rice','bread','apple','tomatoes','watermelon','milk','pasta','wine','juice','avocado', 'banana', 'beef', 'egg', 'eggs', 'garlic', 'lettuce', 'meat', 'pork', 'radish', 'onion', 'carrot', 'mushroom', 'scallion', 'soy sauce', 'cilantro', 'tofu', 'cannedfood','beansprouts']
 
 const ImageUploader = ({addRecipe}) => {
   const [imageSrc, setImageSrc] = useState('');
@@ -100,9 +100,9 @@ const ImageUploader = ({addRecipe}) => {
               {/* Show ITEMS HERE */}
               <div className='flex flex-wrap gap-2 '>
                 {ingredientList.map((ingredient, index) => (
-                  <div key={index} className='flex flex-end w-[90px] flex-wrap justify-center' style={{ margin: '5px' }}>
-                    {(items_arr.includes(ingredient.toLowerCase().replace(/\s/g, ''))) ? <img className='w-16' src={require(`../assets/items/${ingredient.toLowerCase().replace(/\s/g, '')}.png`)} alt={ingredient} onClick={() => removeIngredient(ingredient.toLowerCase())} /> : <img onClick={() => removeIngredient(ingredient.toLowerCase().replace(/\s/g, ''))} className='w-16' src={bag} alt='none' />}
-                    <div className='place-self-end text-white'>{ingredient.toLowerCase()}</div>
+                  <div key={index} className='flex w-[95px] flex-wrap justify-center flex-col' style={{ margin: '5px', justifyContent: 'flex-end' }}>
+                    {(items_arr.includes(ingredient.toLowerCase().replace(/\s/g, ''))) ? <img className='w-16 block place-self-center' src={require(`../assets/items/${ingredient.toLowerCase().replace(/\s/g, '')}.png`)} alt={ingredient} onClick={() => removeIngredient(ingredient.toLowerCase())} /> : <img onClick={() => removeIngredient(ingredient.toLowerCase().replace(/\s/g, ''))} className='w-16 block place-self-center' src={bag} alt='none' />}
+                    <p className=' text-white block place-self-center'>{ingredient.toLowerCase()}</p>
                   </div>
                 ))}
               </div>
