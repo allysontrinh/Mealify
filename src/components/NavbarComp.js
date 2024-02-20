@@ -42,7 +42,7 @@ export function NavbarComp() {
         className="flex items-center gap-x-2 p-1 font-medium"
       >
         <img className="w-6" src={recipelogo} alt=""/>
-        <a href="/collection" className="flex items-center text-xl mr-2">
+        <a href="/collection" className="flex items-center text-xl mr-7">
           Collection
         </a>
       </Typography>

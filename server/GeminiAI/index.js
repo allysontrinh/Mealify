@@ -88,7 +88,7 @@ async function getIngredients(image){
 
 // takes in array of strings of ingredients and generates recipes 
 async function getRecipe(ingredientList){
-    let prompt = `Give me one recipe that uses ${ingredientList.toString()}`;
+    let prompt = `Give me one recipe that uses one or more of these ingredients: ${ingredientList.toString()}`;
     // if (filter === ""){
     //     prompt = `Give me one recipe that uses ${ingredientList.toString()}`;
     // }
@@ -130,6 +130,14 @@ async function getMissingIngredients(ingredients, recipe){
     return [missingList[0]];
 }
 
+app.post('/getMissingItems', async (req, res) => {
+    const ingredients = req.body.items;
+    const recipe = req.body.recipe;
+    const missingIngredients = await getMissingIngredients(ingredients, recipe);
+    const prices = await getPricesForFoodItems(missingIngredients)
+    res.json(prices);
+})
+
 app.post('/getRecipe', async (req, res) => {
 
     try {
@@ -138,11 +146,12 @@ app.post('/getRecipe', async (req, res) => {
         // const imageBase64 = imageData.toString('base64');
         const ingredients = req.body.items;
         const recipe = await getRecipe(ingredients);
-        console.log("HELLO");
-        const missingIngredients = await getMissingIngredients(ingredients, recipe)
-        const prices = await getPricesForFoodItems(missingIngredients)
-        console.log("prices: ", prices)
-        res.json({recipe, prices});
+        // console.log("HELLO");
+        // const missingIngredients = await getMissingIngredients(ingredients, recipe)
+        // const prices = await getPricesForFoodItems(missingIngredients)
+        // console.log("prices: ", prices)
+        // res.json({recipe, prices});
+        res.json(recipe);
 
         // const list = getIngredients(imageBase64);
         // console.log(list);

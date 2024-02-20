@@ -125,7 +125,7 @@ body {
 .loading-container {
 	position: absolute;
 	bottom: 50vh;
-	right: 48vw;
+	right: 47vw;
 	display: flex;
 	justify-content: center;
 	align-items: center;
