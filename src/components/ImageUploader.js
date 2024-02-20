@@ -5,12 +5,13 @@ import Modal from './Modal';
 import bag from '../assets/items/bag.png';
 import whisk from '../assets/whisk.png'
 import envelop from '../assets/envelop.png'
+import remove from '../assets/remove.png'
 
-const items_arr = ['basil','jalapeno','soysauce','ricenoodles','clove','butter','flour','soda','ginger','rice','bread','apple','tomatoes','watermelon','milk','pasta','wine','juice','avocado', 'banana', 'beef', 'egg', 'eggs', 'garlic', 'lettuce', 'meat', 'pork', 'radish', 'onion', 'carrot', 'mushroom', 'scallion', 'soy sauce', 'cilantro', 'tofu', 'cannedfood','beansprouts']
+const items_arr = ['basil', 'jalapeno', 'soysauce', 'ricenoodles', 'clove', 'butter', 'flour', 'soda', 'ginger', 'rice', 'bread', 'apple', 'tomatoes', 'watermelon', 'milk', 'pasta', 'wine', 'juice', 'avocado', 'banana', 'beef', 'egg', 'eggs', 'garlic', 'lettuce', 'meat', 'pork', 'radish', 'onion', 'carrot', 'mushroom', 'scallion', 'soy sauce', 'cilantro', 'tofu', 'cannedfood', 'beansprouts']
 
-const ImageUploader = ({addRecipe}) => {
-  const [imageSrc, setImageSrc] = useState('');
-  const [imageBase64, setImageBase64] = useState('');
+const ImageUploader = ({ addRecipe }) => {
+  // const [imageSrc, setImageSrc] = useState('');
+  // const [imageBase64, setImageBase64] = useState('');
   const [ingredientList, setIngredientList] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -19,7 +20,7 @@ const ImageUploader = ({addRecipe}) => {
     const reader = new FileReader();
 
     reader.onloadend = () => {
-      setImageSrc(reader.result);
+      // setImageSrc(reader.result);
       convertImageToBase64(reader.result);
     };
 
@@ -52,8 +53,8 @@ const ImageUploader = ({addRecipe}) => {
         const parsedData = JSON.parse(data);
         console.log(typeof (parsedData));
         if (typeof (parsedData) == "object" && parsedData.items) {
-          for(const item of parsedData.items){
-            if(!ingredientList.includes(item.toLowerCase())){
+          for (const item of parsedData.items) {
+            if (!ingredientList.includes(item.toLowerCase())) {
               ingredientList.push(item.toLowerCase())
             }
           }
@@ -69,7 +70,7 @@ const ImageUploader = ({addRecipe}) => {
   const convertImageToBase64 = (imageSrc) => {
     // Convert image to base64
     const base64String = imageSrc.split(',')[1];
-    setImageBase64(base64String);
+    // setImageBase64(base64String);
     // console.log(base64String);
     getImageData(base64String);
   };
@@ -87,7 +88,7 @@ const ImageUploader = ({addRecipe}) => {
         <div className='relative'>
           <img id="pantry" className='absolute' src={pantry} alt="pantry" />
           <div className='absolute mt-9 ml-8 p-2 w-[150px] rounded-md'>
-            <img className='absolute' src={envelop} alt=''/>
+            <img className='absolute' src={envelop} alt='' />
             <input className='absolute mt-20 pl-6 w-[125px] border-none' type="file" accept="image/*" onChange={handleImageChange} />
           </div>
         </div>
@@ -95,25 +96,38 @@ const ImageUploader = ({addRecipe}) => {
         {imageSrc && <img src={imageSrc} alt="Uploaded" style={{ maxWidth: '300px' }} />}
       </div> */}
         <div className='pantry-div'>
-          {imageBase64 && (
+          {
             <div className=''>
-              {/* Show ITEMS HERE */}
+              {/* ITEMS ARE SHOWN HERE */}
               <div className='flex flex-wrap gap-6 justify-center'>
                 {ingredientList.map((ingredient, index) => (
-                  <div key={index} className='flex flex-wrap justify-center flex-col' style={{ justifyContent: 'flex-end' }}>
-                    {(items_arr.includes(ingredient.toLowerCase().replace(/\s/g, ''))) ? <img className='h-[4.5rem] block place-self-center hover:animate-pulse cursor-pointer' src={require(`../assets/items/${ingredient.toLowerCase().replace(/\s/g, '')}.png`)} alt={ingredient} onClick={() => removeIngredient(ingredient.toLowerCase())} /> : <img onClick={() => removeIngredient(ingredient.toLowerCase().replace(/\s/g, ''))} className='w-16 block place-self-center cursor-pointer' src={bag} alt='none' />}
+                  <div key={index} className='flex flex-wrap justify-center flex-col relative' style={{ justifyContent: 'flex-end' }}>
+                    {(items_arr.includes(ingredient.toLowerCase().replace(/\s/g, ''))) ?
+                      <img alt={ingredient}
+                        className='h-[4.5rem] block place-self-center hover:animate-pulse'
+                        src={require(`../assets/items/${ingredient.toLowerCase().replace(/\s/g, '')}.png`)}
+                      />
+                      : <img src={bag} alt='none'
+                        className='w-16 block place-self-center'
+                      />}
+                    <img
+                      className='absolute top-[-10px] right-[-15px] cursor-pointer w-7 hover:animate-pulse'
+                      src={remove}
+                      alt='remove'
+                      onClick={() => removeIngredient(ingredient.toLowerCase().replace(/\s/g, ''))}
+                    />
                     <p className=' text-white block place-self-center mb-10'>{ingredient.toLowerCase()}</p>
                   </div>
                 ))}
               </div>
             </div>
-          )}
+          }
         </div>
       </div>
       <Modal addRecipe={addRecipe} items={ingredientList} />
       <div className="loading-container" style={{ display: loading ? 'block' : 'none' }}>
         <div className="loading-spinner">
-          <img src={whisk} alt=''/>
+          <img src={whisk} alt='' />
         </div>
       </div>
     </div>

@@ -88,7 +88,7 @@ async function getIngredients(image){
 
 // takes in array of strings of ingredients and generates recipes 
 async function getRecipe(ingredientList){
-    let prompt = `Give me one recipe that uses one or more of these ingredients: ${ingredientList.toString()}`;
+    let prompt = `Answer in Markdown format. Give me one recipe that uses any of these ingredients: ${ingredientList.toString()}.`;
     // if (filter === ""){
     //     prompt = `Give me one recipe that uses ${ingredientList.toString()}`;
     // }
@@ -170,7 +170,7 @@ app.post('/getIngredients', async (req, res) => {
         const imageBase64 = req.body.image;
 
         const parts = [
-        {text: "Give me food items name stored in this format {\"items\":[food_item_1,food_item_2,etc.]}. The name of the item has to be singular if countable for example \"onions\" become \"onion\". The names of the items has to be a string. If there is one item, give me this object{\"items\":[food_item_name]}}. The response should only be the object."},
+        {text: "Answer in 1 line. Give me food items name stored in this format {\"items\":[food_item_1,food_item_2,etc.]}. The name of the item has to be singular if countable for example \"onions\" become \"onion\". The names of the items has to be a string. If there is one item, give me this object{\"items\":[food_item_name]}}. The response should only be the object."},
         {
             inlineData: {
                 mimeType: "image/jpeg",
@@ -178,12 +178,19 @@ app.post('/getIngredients', async (req, res) => {
             }
         },
     ];
+    function removeBeforeBrace(str) {
+        const braceIndex = str.indexOf('{');
+        if (braceIndex !== -1) {
+            return str.substring(braceIndex);
+        }
+        return str;
+    }
     const result = await model.generateContent({contents: [{role: "user", parts}]});
     const response = await result.response;
     const text = response.text();
-    console.log(text);
-    console.log("HELLO");
-    res.json(text);
+    console.log("Ingredients: ");
+    console.log(removeBeforeBrace(text));
+    res.json(removeBeforeBrace(text));
     }
     catch(error){
         console.error("Error generating content:", error);

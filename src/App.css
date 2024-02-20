@@ -109,12 +109,13 @@ body {
 
 .centered-div {
 	position: absolute;
-	top: 300px;
-	left: 53%;
+	/* top: 300px; */
+	left: 50%;
+	top: 50%;
 	transform: translate(-50%, -50%);
 	/* background-color: white; */
-	padding: 20px;
-	width: 60%;
+	/* padding: 20px; */
+	/* width: 60%; */
 }
 
 .modal {
