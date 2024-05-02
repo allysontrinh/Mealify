@@ -1,7 +1,7 @@
 # Mealify
 2024 Hack(h)er Project
 Members: Vi Doan, Allyson Trinh, Sarah Jang, Ashna Jain, Sagi Sonni
-## Check out our project demo on Devpost!
+#### Check out our project demo on Devpost!
 https://devpost.com/software/mealify-zul102
 
 # Project Description: 
