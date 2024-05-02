@@ -1,6 +1,8 @@
 # Mealify
 2024 Hack(h)er Project
 Members: Vi Doan, Allyson Trinh, Sarah Jang, Ashna Jain, Sagi Sonni
+Check out our project demo on Devpost!
+https://devpost.com/software/mealify-zul102
 
 # Project Description: 
 Mealify is a meticulously hand-drawn website designed to assist users in discovering new recipe inspirations based on the ingredients they already have in their pantry. 
